@@ -115,8 +115,7 @@ public class Board extends JPanel
     }
 
     /*
-     * This method listens for key presses across all components in Swing. 
-     * 
+     * This method listens for key presses across all components in Swing.
      * Note: The snake cannot go UP when it's DOWN, LEFT when it's going RIGHT, etc. 
      */
     public void findKeyEvents() //grab all key events in my application 
