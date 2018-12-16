@@ -5,11 +5,6 @@ import java.util.Arrays;
 import java.util.ArrayList; 
 import javax.swing.JOptionPane; 
 import java.util.concurrent.TimeUnit; 
-/*
- * Write a description of class Rectangle here.
- * 
- * @author (your name) 
- */
 
 public class Snake extends JPanel //implements KeyListener
 {
