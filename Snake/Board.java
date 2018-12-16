@@ -6,12 +6,7 @@ import java.lang.Object;
 import java.util.concurrent.TimeUnit; 
 import java.util.ArrayList; 
 import java.util.Random; 
-/**
- * Write a description of class Board here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+
 public class Board extends JPanel 
 {
     Snake snake = new Snake(); 
