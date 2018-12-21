@@ -1,15 +1,9 @@
 import javax.swing.*; 
 import java.awt.*; 
 import java.awt.event.*;
-import java.util.Arrays; 
 import java.util.ArrayList; 
-import javax.swing.JOptionPane; 
-import java.util.concurrent.TimeUnit; 
-
-public class Snake extends JPanel //implements KeyListener
+public class Snake extends JPanel 
 {
-    //int x = 100, y = 100, width = 20, height = 20;
-
     private static ArrayList<Point> snakeCoordinates = new ArrayList<Point>(); 
     public static final int UP = 0; 
     public static final int DOWN = 1; 
@@ -17,8 +11,8 @@ public class Snake extends JPanel //implements KeyListener
     public static final int LEFT = 3; 
     private static final int WIDTH = 30;
     private static final int HEIGHT = 30; 
-    private static int x; //= 0; 
-    private static int y; //= 0; 
+    private static int x; 
+    private static int y; 
     private static int dir = 3; 
     private static int preDir = -1; 
     private static int length = 3;
@@ -29,13 +23,7 @@ public class Snake extends JPanel //implements KeyListener
     private static int speedFactor = 1; 
     
 
-    public Snake()
-    {
-        //timer.start(); 
-        //snakeCoordinates.add(new Point(450, 450)); 
-        //snakeCoordinates.add(new Point(480, 450)); 
-        //snakeCoordinates.add(new Point(510, 450)); 
-    }  
+    public Snake(){}  
 
     public void newSnake() 
     {
@@ -47,23 +35,19 @@ public class Snake extends JPanel //implements KeyListener
 
     public void drawMe (Graphics g)
     {
-        Graphics2D g2 = (Graphics2D)g; //cast Graphics g as a Graphics2D
+        Graphics2D g2 = (Graphics2D)g; 
         setTimeDelay(getTimeDelay()); 
         int i = 0; 
-
         for (Point location: snakeCoordinates)
         {
             Color darkGreen = new Color(0,102,0); 
             g2.setColor(darkGreen); 
             g2.fillRect((int)snakeCoordinates.get(i).getX(), (int)snakeCoordinates.get(i).getY(), WIDTH, HEIGHT);
-            //g2.setColor(Color.black); 
-            //g2.drawRect((int)snakeCoordinates.get(i).getX(), (int)snakeCoordinates.get(i).getY(), WIDTH, HEIGHT);
-            //System.out.println(" x = " + (int) snakeCoordinates.get(i).getX() + " y = " + (int) snakeCoordinates.get(i).getY()); 
             i++; 
         }
     }
 
-    //setter
+    //setters
     public void setDirection(int dir) {this.dir = dir;}
 
     public void setPreviousDirection(int preDir) {this.preDir = preDir;}
@@ -76,7 +60,7 @@ public class Snake extends JPanel //implements KeyListener
         timer.setDelay(timeDelay); 
     }
 
-    //getter
+    //getters
     public int getDirection() {return dir;}
 
     public int getPreviousDirection() {return preDir;}
@@ -96,34 +80,33 @@ public class Snake extends JPanel //implements KeyListener
     public boolean isAlive() {return alive;}
 
     
-    //public Dimension size() {return snakeCoordinates.size;}
+    
     private class SnakeListener implements ActionListener
     {
+        /**
+         * actionPerformed enables the snake to move properly and grow 
+         */
         public void actionPerformed(ActionEvent e)
         {
             Point headSnake = snakeCoordinates.get(0); 
 
             x = (int) headSnake.getX();  y = (int) headSnake.getY();
 
-            /*
-            if (update)
-            {
-            snakeCoordinates.add(snakeCoordinates.get(snakeCoordinates.size()-1)); 
-            } 
-             */
-            
-
-            //shifts all but the snake's head by one 
+            //excepting the first block -- the snake's head -- all of the blocks have the locations
+            //  shifted to the location of the block in front of them 
             for (int i = (snakeCoordinates.size()-1); i>0;  i -= 1)
             {
                 snakeCoordinates.set(i, snakeCoordinates.get(i-1));   
             }
+            
+            //if the snake has eaten an apple, make the snake grow 
             if (update)
             {
                 grow(); 
             } 
-            //System.out.println("dir = " + dir + " preDir = " + preDir); 
-
+            
+            //shifts the location of the snake head, depending on which direction 
+            //  the snake is now in 
             if (dir == 0 ) 
                 y -= HEIGHT;
             else if (dir == 1)
@@ -134,7 +117,8 @@ public class Snake extends JPanel //implements KeyListener
                 x -= WIDTH; 
 
             snakeCoordinates.set(0, new Point(x,y));
-
+            
+            //checks to make sure the snake has not yet died
             didDie(); 
         }
     }
@@ -151,10 +135,10 @@ public class Snake extends JPanel //implements KeyListener
     }
 
     /**
-     * This method adds one block to the snake's body. It temporarily houses the new block in the same 
-     * location as the snake's 'tail'. During the next iteration of actionPerformed(), the for loop will 
-     * shift all locations by one, and the new block (now the 'tail') will be in the location as  the snake's 
-     * previous tail. 
+     * This method adds one more block to the snake's body. It temporarily houses the new block in the same 
+     * location as the snake's previous 'tail', now the second-to-last block. During the next iteration of actionPerformed(), the for loop will 
+     * shift all of the blocks (except for its head) to the location of the block right before them. As the location of the second-to-last block is 
+     * equal to the location of the last block, the last block's location will not change. 
      */
     public void grow()
     {

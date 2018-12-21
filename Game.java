@@ -7,13 +7,8 @@ public class Game
     public static void main(String[] args)
     {
         Game game = new Game();
-        //Board board = new Board();
     }
     
-    
-    /**
-     * Constructor for objects of class Root
-     */
     
     public Game()
     {
@@ -27,6 +22,6 @@ public class Game
         frame.pack();
         frame.setVisible(true);
         
-        board.startGame();
+        board.gameRun();
     }
 }
