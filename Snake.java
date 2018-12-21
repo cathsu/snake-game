@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*; 
 import java.awt.event.*;
 import java.util.ArrayList; 
+
 public class Snake extends JPanel 
 {
     private static ArrayList<Point> snakeCoordinates = new ArrayList<Point>(); 
@@ -20,9 +21,7 @@ public class Snake extends JPanel
     boolean alive = true; 
     private static int timeDelay = 200; 
     private javax.swing.Timer timer = new Timer(timeDelay, new SnakeListener()); 
-    private static int speedFactor = 1; 
     
-
     public Snake(){}  
 
     public void newSnake() 
