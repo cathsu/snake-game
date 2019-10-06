@@ -1,24 +1,15 @@
 import javax.swing.*; 
 import java.awt.*;
 import java.awt.event.*;
-/**
- * Write a description of class Buttons here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+
 public class Button extends JPanel
 {
-    // instance variables - replace the example below with your own
     private int x;
     Snake snake = new Snake(); 
     int delay; 
-    /**
-     * Constructor for objects of class Buttons
-     */
+    
     public Button()
     {
-        
         this.setLayout(new GridBagLayout()); 
         GridBagConstraints c = new GridBagConstraints();
         
@@ -67,5 +58,4 @@ public class Button extends JPanel
             snake.setTimeDelay(delay); 
         }
     }
-    
 }

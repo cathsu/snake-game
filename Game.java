@@ -9,7 +9,6 @@ public class Game
         Game game = new Game();
     }
     
-    
     public Game()
     {
         Board board = new Board();

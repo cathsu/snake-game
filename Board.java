@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*; 
 import java.awt.event.*;
 
-
 public class Board extends JPanel 
 {
     Snake snake = new Snake(); 
@@ -11,10 +10,7 @@ public class Board extends JPanel
     int height; 
     boolean runInto = false; 
     JFrame frame; 
-    public Board() //default constructor 
-    {
-
-    }
+    public Board() {}
 
     public void paintComponent(Graphics g) //will be called automatically by JComponent
     {
@@ -30,6 +26,7 @@ public class Board extends JPanel
                 g2.setColor(Color.white); 
                 g2.drawRect(row,col,30,30); 
             } 
+            
         //draw the snake and apple 
         snake.drawMe(g); 
         apple.drawMe(g); 
@@ -86,7 +83,6 @@ public class Board extends JPanel
             runInto = true; 
         }
     }
-
     
     public boolean didSnakeEatApple(Apple apple)
     {

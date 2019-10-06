@@ -78,8 +78,6 @@ public class Snake extends JPanel
 
     public boolean isAlive() {return alive;}
 
-    
-    
     private class SnakeListener implements ActionListener
     {
         /**
